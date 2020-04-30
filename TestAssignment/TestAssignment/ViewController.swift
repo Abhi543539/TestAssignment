@@ -8,24 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     private var factsTableView: UITableView!
     private let countryVM = CountryVM()
     private let control: UIRefreshControl =    UIRefreshControl()
-    
+
     let estimatedRowHeight = 400.00
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         countryVM.loadData()
-                
+
         countryVM.needsRefresh = { [weak self] in
-            DispatchQueue.main.async{
-                
-                if let control = self?.factsTableView.refreshControl, control.isRefreshing
-                {
+            DispatchQueue.main.async {
+
+                if let control = self?.factsTableView.refreshControl, control.isRefreshing {
                     control.endRefreshing()
                 }
                 self?.factsTableView.reloadData()
@@ -33,16 +32,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         control.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        
+
         factsTableView.refreshControl = control
         self.factsTableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
     }
-    
-    @objc private func reloadData()
-    {
+
+    @objc private func reloadData() {
         countryVM.loadData()
     }
-    
+
     override func loadView() {
         factsTableView = UITableView()
         factsTableView.register(UITableViewCell.self, forCellReuseIdentifier: CountryFactsCell.identifier)
@@ -50,39 +48,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         factsTableView.delegate = self
         view = factsTableView
     }
-    
-    
+
     // MARK: TableView Delegates
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countryVM.factsCount
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         var cell: CountryFactsCell? = tableView.dequeueReusableCell(withIdentifier: CountryFactsCell.identifier) as? CountryFactsCell
-        
-        if cell == nil
-        {
+
+        if cell == nil {
             cell = CountryFactsCell()
         }
-        
+
         cell!.populate(name: countryVM.factTitle(indexPath.row), desc: countryVM.description(indexPath.row))
-        
+
         countryVM.image(indexPath.row) { (image) in
-            if image != nil
-            {
+            if image != nil {
                 cell!.updateImage(image: image!)
             }
         }
         return cell!
     }
-    
+
 }
 

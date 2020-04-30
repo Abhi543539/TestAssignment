@@ -12,21 +12,19 @@ import Foundation
 struct Country: Codable {
     let title: String
     let facts: [CountryFact]
-    
-    init(from decoder: Decoder) throws
-    {
+
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.title = try container.decode(String.self, forKey: .title)
         let facts = try container.decode([CountryFact].self, forKey: .facts)
         self.facts = facts.filter({$0.title != nil})
     }
-    
-    private enum CodingKeys: String, CodingKey
-    {
+
+    private enum CodingKeys: String, CodingKey {
         case title
         case facts = "rows"
     }
-    
+
 }
 
 // MARK: - Row
@@ -39,5 +37,5 @@ struct CountryFact: Codable {
         case rowDescription = "description"
         case imageHref
     }
-    
+
 }
