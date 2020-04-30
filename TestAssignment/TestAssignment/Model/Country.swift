@@ -6,6 +6,7 @@
 //  Copyright © 2020 Abhishek Singla. All rights reserved.
 //
 
+/// This class acts as a Model class
 import Foundation
 
 // MARK: - Country

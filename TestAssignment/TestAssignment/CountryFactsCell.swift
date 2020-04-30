@@ -8,8 +8,10 @@
 
 import UIKit
 
+/// This class creates UI of TableviewCell
 class CountryFactsCell: UITableViewCell {
 
+    //It consists of all constants floats for height/width/padding for contraints
     private struct Constants {
         static let width: CGFloat = 80.0
         static let height: CGFloat = 80.0
@@ -17,37 +19,36 @@ class CountryFactsCell: UITableViewCell {
         static let constraintNeg10: CGFloat = -10.0
         static let constraintZero: CGFloat = 00.0
         static let constraint80: CGFloat = 60.0
-
   }
 
     static var identifier: String {
         "CountryFactCell"
     }
 
-    private var name: UILabel = {
-        let lb = UILabel()
-        lb.textColor = .red
-        lb.textAlignment = .left
-        lb.numberOfLines = 0
-        lb.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        lb.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        lb.translatesAutoresizingMaskIntoConstraints = false
-
-        return lb
+    // MARK: - Variables
+    private var lblTitle: UILabel = {
+        let lblTitle = UILabel()
+        lblTitle.textColor = .red
+        lblTitle.textAlignment = .left
+        lblTitle.numberOfLines = 0
+        lblTitle.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        lblTitle.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        lblTitle.translatesAutoresizingMaskIntoConstraints = false
+        return lblTitle
     }()
 
-    private var descLb: UILabel = {
-        let descLb = UILabel()
-        descLb.textColor = .black
-        descLb.textAlignment = .left
-        descLb.numberOfLines = 0
-        descLb.translatesAutoresizingMaskIntoConstraints = false
-        descLb.setContentHuggingPriority(.defaultLow, for: .vertical)
-        descLb.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return descLb
+    private var lblDescription: UILabel = {
+        let lblDesc = UILabel()
+        lblDesc.textColor = .black
+        lblDesc.textAlignment = .left
+        lblDesc.numberOfLines = 0
+        lblDesc.translatesAutoresizingMaskIntoConstraints = false
+        lblDesc.setContentHuggingPriority(.defaultLow, for: .vertical)
+        lblDesc.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return lblDesc
     }()
 
-    private let nameImage: UIImageView = {
+    private let factImage: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +56,7 @@ class CountryFactsCell: UITableViewCell {
         return imgView
     }()
 
+    // MARK: - Functions
     init() {
         super.init(style: .default, reuseIdentifier: Self.identifier)
         setupConstraints()
@@ -64,35 +66,41 @@ class CountryFactsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func populate(name: String, desc: String) {
-        self.name.text = name
-        self.descLb.text = desc
+    /// Called to populate lblTitle and description
+    /// - parameter title: Set lblTitle string
+    /// - parameter desc: Set desc string
+    func populate(title: String, desc: String) {
+        self.lblTitle.text = title
+        self.lblDescription.text = desc
     }
 
+    /// Called to set image
+    /// - parameter image: Set image
     func updateImage(image: UIImage) {
-        self.nameImage.image = image
+        self.factImage.image = image
     }
 
+    /// Call this method to setup all contraints of subviews
     func setupConstraints() {
-        contentView.addSubview(name)
-        contentView.addSubview(nameImage)
-        contentView.addSubview(descLb)
+        contentView.addSubview(lblTitle)
+        contentView.addSubview(factImage)
+        contentView.addSubview(lblDescription)
 
         NSLayoutConstraint.activate([
-            nameImage.widthAnchor.constraint(equalToConstant: Constants.width),
-            nameImage.heightAnchor.constraint(equalToConstant: Constants.height),
-            nameImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Constants.constraint10),
-            nameImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraint10),
+            factImage.widthAnchor.constraint(equalToConstant: Constants.width),
+            factImage.heightAnchor.constraint(equalToConstant: Constants.height),
+            factImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Constants.constraint10),
+            factImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraint10),
 
-            name.leadingAnchor.constraint(equalTo: nameImage.trailingAnchor, constant: Constants.constraint10),
-            name.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.constraintNeg10),
-            name.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraint10),
-            name.bottomAnchor.constraint(equalTo: descLb.topAnchor),
+            lblTitle.leadingAnchor.constraint(equalTo: factImage.trailingAnchor, constant: Constants.constraint10),
+            lblTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.constraintNeg10),
+            lblTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraint10),
+            lblTitle.bottomAnchor.constraint(equalTo: lblDescription.topAnchor),
 
-            descLb.leadingAnchor.constraint(equalTo: name.leadingAnchor, constant: Constants.constraintZero),
-            descLb.trailingAnchor.constraint(equalTo: name.trailingAnchor, constant: Constants.constraintZero),
-            descLb.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.constraintNeg10),
-            descLb.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.constraint80)
+            lblDescription.leadingAnchor.constraint(equalTo: lblTitle.leadingAnchor, constant: Constants.constraintZero),
+            lblDescription.trailingAnchor.constraint(equalTo: lblTitle.trailingAnchor, constant: Constants.constraintZero),
+            lblDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.constraintNeg10),
+            lblDescription.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.constraint80)
         ])
     }
 }

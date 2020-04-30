@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Enum to return specific error message
 enum JsonError: Error, CustomStringConvertible {
     case serviceError
     case noData
@@ -23,6 +24,7 @@ enum JsonError: Error, CustomStringConvertible {
     }
 }
 
+/// This class is used for making network calls
 class NetworkManager {
 
         // MARK: -

@@ -8,14 +8,16 @@
 
 import UIKit
 
+///This class acts as view
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // MARK: - Variables
     private var factsTableView: UITableView!
     private let countryVM = CountryVM()
-    private let control: UIRefreshControl =    UIRefreshControl()
-
+    private let control: UIRefreshControl = UIRefreshControl()
     let estimatedRowHeight = 400.00
 
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,17 +38,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         factsTableView.refreshControl = control
         self.factsTableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
     }
-
-    @objc private func reloadData() {
-        countryVM.loadData()
-    }
-
+    
     override func loadView() {
         factsTableView = UITableView()
         factsTableView.register(UITableViewCell.self, forCellReuseIdentifier: CountryFactsCell.identifier)
         factsTableView.dataSource = self
         factsTableView.delegate = self
         view = factsTableView
+    }
+
+    // MARK: - Pull to refresh Function
+    @objc private func reloadData() {
+        countryVM.loadData()
     }
 
     // MARK: TableView Delegates
@@ -66,7 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell = CountryFactsCell()
         }
 
-        cell!.populate(name: countryVM.factTitle(indexPath.row), desc: countryVM.description(indexPath.row))
+        cell!.populate(title: countryVM.factTitle(indexPath.row), desc: countryVM.description(indexPath.row))
 
         countryVM.image(indexPath.row) { (image) in
             if image != nil {

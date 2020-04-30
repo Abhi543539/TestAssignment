@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class contains all API url's
 struct API {
     static let kBaseURL = "https://dl.dropboxusercontent.com"
     static let kFactsFeeds = "/s/2iodh4vg0eortkl/facts.json"
