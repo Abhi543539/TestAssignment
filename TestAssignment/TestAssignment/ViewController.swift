@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         factsTableView.refreshControl = control
         self.factsTableView.estimatedRowHeight = CGFloat(estimatedRowHeight)
     }
-    
+
     override func loadView() {
         factsTableView = UITableView()
         factsTableView.register(UITableViewCell.self, forCellReuseIdentifier: CountryFactsCell.identifier)
@@ -80,4 +80,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 }
-

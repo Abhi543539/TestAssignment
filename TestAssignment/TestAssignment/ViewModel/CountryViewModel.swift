@@ -10,7 +10,7 @@ import UIKit
 
 /// This class acts as view-model class
  class CountryVM {
-    
+
     // MARK: - Variables
     private var country: Country? {
         didSet {
@@ -56,21 +56,20 @@ import UIKit
         self.country = try! JSONDecoder().decode(Country.self, from: json)
     }
 
-    
     /// Called to get fact title
     /// - parameter _: Set index for cell to show data
     /// - Returns: String at specific index
     func factTitle(_ idx: Int) -> String {
         country?.facts[idx].title!.capitalized ?? ""
     }
-    
+
     /// Called to get fact description
     /// - parameter _: Set index for cell to show data
     /// - Returns: String at specific index
     func description(_ idx: Int) -> String {
         country?.facts[idx].rowDescription?.filter { !"\n".contains($0) } ?? ""
     }
-    
+
     /// Called to get fact image
     /// - parameter _: Set index for cell to show data
     /// - parameter completion: Set images assynchronously

@@ -89,7 +89,7 @@ class CountryFactsCell: UITableViewCell {
         NSLayoutConstraint.activate([
             factImage.widthAnchor.constraint(equalToConstant: Constants.width),
             factImage.heightAnchor.constraint(equalToConstant: Constants.height),
-            factImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: Constants.constraint10),
+            factImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.constraint10),
             factImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraint10),
 
             lblTitle.leadingAnchor.constraint(equalTo: factImage.trailingAnchor, constant: Constants.constraint10),
