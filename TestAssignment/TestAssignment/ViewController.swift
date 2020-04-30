@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         factsTableView.register(UITableViewCell.self, forCellReuseIdentifier: CountryFactsCell.identifier)
         factsTableView.dataSource = self
         factsTableView.delegate = self
+        factsTableView.tableFooterView = UIView()
         view = factsTableView
     }
 
@@ -60,7 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countryVM.factsCount
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: CountryFactsCell? = tableView.dequeueReusableCell(withIdentifier: CountryFactsCell.identifier) as? CountryFactsCell
@@ -70,7 +71,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         cell!.populate(title: countryVM.factTitle(indexPath.row), desc: countryVM.description(indexPath.row))
         cell!.updateImage(image: nil)
-
+        cell!.selectionStyle = .none
         countryVM.image(indexPath.row) { (image) in
                 cell!.updateImage(image: image)
 

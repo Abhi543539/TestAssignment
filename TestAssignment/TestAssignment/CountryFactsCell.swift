@@ -75,7 +75,7 @@ class CountryFactsCell: UITableViewCell {
     }
 
     /// Called to set image
-    /// - parameter image: Set image
+    /// - parameter image: Set image reference
     func updateImage(image: UIImage?) {
         DispatchQueue.main.async {
         self.factImage.image = image ?? UIImage(named: "FactPlaceholder")
