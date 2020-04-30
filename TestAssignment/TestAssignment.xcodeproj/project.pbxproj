@@ -100,6 +100,15 @@
 			path = TestResources;
 			sourceTree = "<group>";
 		};
+		D25CFFEF245AC8500089A728 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D27569F524598BBF00A5E2AE /* ViewController.swift */,
+				D25CFFE32459BE3A0089A728 /* CountryFactsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		D27569E524598BBF00A5E2AE = {
 			isa = PBXGroup;
 			children = (
@@ -124,13 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				D27569F124598BBF00A5E2AE /* AppDelegate.swift */,
+				D2756A292459ACE000A5E2AE /* Model */,
+				D25CFFEF245AC8500089A728 /* View */,
 				D25CFFE02459B06E0089A728 /* ViewModel */,
 				D2756A24245997F000A5E2AE /* Utilities */,
 				D2756A21245994F800A5E2AE /* NetworkLayer */,
-				D2756A292459ACE000A5E2AE /* Model */,
 				D25CFFEC2459F3A20089A728 /* TestResources */,
-				D27569F524598BBF00A5E2AE /* ViewController.swift */,
-				D25CFFE32459BE3A0089A728 /* CountryFactsCell.swift */,
 				D27569FA24598BC000A5E2AE /* Assets.xcassets */,
 				D27569FC24598BC000A5E2AE /* LaunchScreen.storyboard */,
 				D27569FF24598BC000A5E2AE /* Info.plist */,
