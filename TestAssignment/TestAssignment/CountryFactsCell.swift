@@ -18,7 +18,7 @@ class CountryFactsCell: UITableViewCell {
         static let constraint10: CGFloat = 10.0
         static let constraintNeg10: CGFloat = -10.0
         static let constraintZero: CGFloat = 00.0
-        static let constraint80: CGFloat = 60.0
+        static let constraint60: CGFloat = 60.0
   }
 
     static var identifier: String {
@@ -76,8 +76,10 @@ class CountryFactsCell: UITableViewCell {
 
     /// Called to set image
     /// - parameter image: Set image
-    func updateImage(image: UIImage) {
-        self.factImage.image = image
+    func updateImage(image: UIImage?) {
+        DispatchQueue.main.async {
+        self.factImage.image = image ?? UIImage(named: "FactPlaceholder")
+        }
     }
 
     /// Call this method to setup all contraints of subviews
@@ -100,7 +102,7 @@ class CountryFactsCell: UITableViewCell {
             lblDescription.leadingAnchor.constraint(equalTo: lblTitle.leadingAnchor, constant: Constants.constraintZero),
             lblDescription.trailingAnchor.constraint(equalTo: lblTitle.trailingAnchor, constant: Constants.constraintZero),
             lblDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.constraintNeg10),
-            lblDescription.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.constraint80)
+            lblDescription.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.constraint60)
         ])
     }
 }

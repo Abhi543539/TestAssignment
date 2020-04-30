@@ -68,13 +68,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if cell == nil {
             cell = CountryFactsCell()
         }
-
         cell!.populate(title: countryVM.factTitle(indexPath.row), desc: countryVM.description(indexPath.row))
+        cell!.updateImage(image: nil)
 
         countryVM.image(indexPath.row) { (image) in
-            if image != nil {
-                cell!.updateImage(image: image!)
-            }
+                cell!.updateImage(image: image)
+
         }
         return cell!
     }

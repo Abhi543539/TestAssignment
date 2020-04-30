@@ -75,14 +75,18 @@ import UIKit
     /// - parameter completion: Set images assynchronously
     func image(_ idx: Int, completion: @escaping((UIImage?) -> Void)) {
         // Image download logic
-        let url = URL(string: country?.facts[idx].imageHref ?? "http://placehold.jp/200x200.png")
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            if let data = data {
-                DispatchQueue.main.async {
-                    completion(UIImage(data: data))
+        if let link = country?.facts[idx].imageHref, let url = URL(string: link) {
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url)
+                if let data = data, let image = UIImage(data: data) {
+                    completion(image)
+                } else {
+                    completion(nil)
                 }
             }
+        } else {
+            completion(nil)
         }
+
     }
 }
