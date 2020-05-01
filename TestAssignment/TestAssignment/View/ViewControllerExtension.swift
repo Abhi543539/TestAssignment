@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is a extension class of ViewController, to handle tableview delegates separately
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: TableView Delegates
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
